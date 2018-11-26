@@ -1,0 +1,71 @@
+{
+  "name": "les-recettes",
+  "version": "0.0.1",
+  "description": "Les recettes",
+  "main": "dist/main.js",
+  "scripts": {
+    "tslint": "tslint --fix 'app/**/*.ts' 'server/**/*.ts'",
+    "jest": "jest --verbose",
+    "testw": "jest --watch",
+    "prettier": "prettier --write '**/*.{json,md,ts}'",
+    "compile:app": "tsc -p ./app/tsconfig.json",
+    "compile:server": "tsc -p ./server/tsconfig.json",
+    "compile": "run-s compile:*",
+    "test": "run-s -c compile jest tslint",
+    "clean": "rm -rf ./dist",
+    "build:app": "webpack --config=./app/webpack.config.js --bail --progress --mode=production",
+    "build:server": "tsc -p ./server/tsconfig.prod.json",
+    "build": "run-s clean build:*",
+    "start": "NODE_ENV=production node ./dist/server/server.js",
+    "ts-start": "ts-node ./lib/server.ts",
+    "live": "nodemon --config ./dev/nodemon.json"
+  },
+  "author": "Michael Borde",
+  "license": "MIT",
+  "repository": "MichaelBorde/les-recettes.git",
+  "private": true,
+  "devDependencies": {
+    "@types/express": "4.16.0",
+    "@types/jest": "23.3.9",
+    "@types/knex": "0.15.1",
+    "@types/lodash": "4.14.118",
+    "@types/node": "10.12.10",
+    "@types/webpack": "4.4.19",
+    "@types/webpack-dev-middleware": "2.0.2",
+    "css-loader": "1.0.1",
+    "html-webpack-plugin": "3.2.0",
+    "jest": "23.6.0",
+    "nodemon": "1.18.6",
+    "npm-run-all": "4.1.5",
+    "prettier": "1.15.2",
+    "style-loader": "0.23.1",
+    "ts-jest": "23.10.5",
+    "ts-loader": "5.3.0",
+    "ts-node": "7.0.1",
+    "tslint": "5.11.0",
+    "tslint-config-prettier": "1.16.0",
+    "typescript": "3.1.6",
+    "webpack": "4.26.1",
+    "webpack-cli": "3.1.2",
+    "webpack-dev-middleware": "3.4.0"
+  },
+  "jest": {
+    "transform": {
+      ".ts": "ts-jest"
+    },
+    "testRegex": "/(app|server)/.*\\.spec\\.ts$",
+    "moduleFileExtensions": [
+      "json",
+      "js",
+      "ts"
+    ]
+  },
+  "dependencies": {
+    "ajv": "6.5.5",
+    "express": "4.16.4",
+    "knex": "0.15.2",
+    "lodash": "4.17.11",
+    "pg": "7.6.1",
+    "uuid": "3.3.2"
+  }
+}
